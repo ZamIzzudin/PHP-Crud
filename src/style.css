@@ -1,5 +1,5 @@
 :root{
-    --primary: rgb(12, 12, 13);
+    --primary: rgb(23, 28, 27);
     --secondary: rgb(252, 202, 70);
     --third: rgb(196, 196, 196);
 
@@ -68,4 +68,20 @@ a{
 .img-thumbnail{
     background-color: var(--secondary);
     border-color: var(--secondary);
+}
+
+.body-crud{
+    margin-top: 20vh;
+}
+
+footer{
+    height: 100px;
+    width: 100%;
+    background-color: var(--primary);
+
+}
+
+.footer-text{
+    text-align: center;
+    line-height: 100px;
 }

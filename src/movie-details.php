@@ -41,23 +41,22 @@
     <main class="container px-5">
         <div class="row position-relative main-title">
             <img src="./pict/venom_poster.jpg" style="width: 18rem;" class="img-thumbnail" alt="...">
-            <div class="col ml-4 pt-3">
-                <h1 class="text text-orange mt-3">Venom : Let There be Carnage</h1>
+            <div class="col ml-4 pt-3 ">
+                <h1 class="text text-orange mt-2">Venom : Let There be Carnage</h1>
                 <h3 class="text text-orange mb-5">2021</h3>
                 <p class="text-light">Director : Andy Serkis</p>
                 <p class="text-light">Genre : Action, Adventure, Sci-F</p>
                 <p class="text-light">Actor : Tom Hardy, Woody Harrelson, Michelle Williams, Naomie Harris, Reid Scott, Stephen Graham</p>
-                <div class="row">
-                    <a class="btn btn-orange mt-2 pb-2"><i class="bi bi-play-fill"></i> Watch Now</a>
-                    <a class="btn btn-orange mt-2 pb-2 mx-3"><i class="bi bi-play-fill"></i> Watch Now</a>
-                    <a class="btn btn-orange mt-2 pb-2"><i class="bi bi-play-fill"></i> Watch Now</a>
+                <div class="row pl-3">
+                    <a class="btn btn-orange mt-2 pb-2" href=""><i class="bi bi-play-fill"></i> Watch Now</a>
+                    <a class="btn btn-orange mt-2 pb-2 mx-3" href="./update.php"><i class="bi bi-pencil-fill"></i></i> Edit</a>
+                    <a class="btn btn-outline-orange mt-2 pb-2" href="./delete.php"><i class="bi bi-trash-fill"></i> Delete</a>
                 </div>
             </div>
         </div>
         <div class="row px-5">
             <h3 class="text text-orange mt-5">Synopsis</h3>
-            <p class="text-light text-justify">Tom Hardy returns to the big screen as the lethal protector Venom, one of MARVEL’s greatest and most complex characters. Directed by Andy Serkis, written by Kelly Marcel with the story by Tom Hardy & Marcel, the film also stars Michelle Williams, Naomie Harris and Woody Harrelson, in the role of the villain Cletus Kasady/Carnage.</p>
-            <p class="text-light text-justify">Eddie Brock attempts to reignite his career by interviewing serial killer Cletus Kasady, who becomes the host of the symbiote Carnage and escapes prison after a failed execution.</p>
+            <p class="text-light text-justify">Tom Hardy returns to the big screen as the lethal protector Venom, one of MARVEL’s greatest and most complex characters. Directed by Andy Serkis, written by Kelly Marcel with the story by Tom Hardy & Marcel, the film also stars Michelle Williams, Naomie Harris and Woody Harrelson, in the role of the villain Cletus Kasady/Carnage. <br><br> Eddie Brock attempts to reignite his career by interviewing serial killer Cletus Kasady, who becomes the host of the symbiote Carnage and escapes prison after a failed execution.</p>
         </div>
         <div class="row">
             <iframe width="560" class="mx-auto my-5" height="315" src="https://www.youtube.com/embed/-FmWuCgJmxo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

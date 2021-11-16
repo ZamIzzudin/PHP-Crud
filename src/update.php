@@ -1,29 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <?php 
-        include "./header.php";
-        require "../config/config_db.php";
-    
-        if(isset($_POST['submit'])){
-            $title = $_POST['title'];
-            $year = $_POST['year'];
-            $director = $_POST['director'];
-            $actor = $_POST['actor'];
-            $genre = $_POST['genre'];
-            $trailer = $_POST['trailer'];
-            $thumb = $_POST['thumb'];
-            $w_poster = $_POST['w_poster'];
-            $synopsis = $_POST['synopsis'];
-
-            $query = "INSERT INTO film(title,year,director,actor,genre,trailer_link,thumbnail,w_poster,synopsis) VALUES('$title','$year','$director','$actor','$genre','$trailer','$thumb','$w_poster','$synopsis')";
-        
-            $send = mysqli_query($conn,$query);
-
-            $conn->close();
-        }
-    ?>
-    <title>Create</title>
+    <?php include "./header.php" ?>
+    <title>Update</title>
   </head>
   <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -55,58 +34,53 @@
         </div>  
     </nav> 
     <main class="container body-crud px-5">
-        <h1 class="text-orange mb-5">Add New Title</h1>
+        <h1 class="text-orange mb-5">Edit</h1>
          <form class="col text-light" action="" method="POST">
-             <?php if(isset($send) && $send === true) : ?>
-                <div class="alert alert-success" role="alert">
-                successfully created user
-                </div>
-            <?php endif ?>
             <div class="row">
                 <div class="form-group col">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" name="title" require>
+                    <label for="Title">Title</label>
+                    <input type="text" class="form-control" name="Title" require>
                 </div>
                 <div class="form-group col">
-                    <label for="year">Year Release</label>
-                    <input type="text" class="form-control" name="year" require>
+                    <label for="Year">Year Release</label>
+                    <input type="text" class="form-control" name="Year" require>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="director">Director</label>
-                    <input type="text" class="form-control" name="director" require>
+                    <label for="Director">Director</label>
+                    <input type="text" class="form-control" name="Director" require>
                 </div>
                 <div class="form-group col">
-                    <label for="actor">Actor</label>
-                    <input type="text" class="form-control" name="actor" require>
+                    <label for="Actor">Actor</label>
+                    <input type="text" class="form-control" name="Actor" require>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <label for="genre">Genre</label>
-                    <input type="text" class="form-control" name="genre" require>
+                    <label for="Genre">Genre</label>
+                    <input type="text" class="form-control" name="Genre" require>
                 </div>
                 <div class="form-group col">
-                    <label for="trailer">Trailer Link</label>
-                    <input type="text" class="form-control" name="trailer" require>
+                    <label for="Trailer">Trailer Link</label>
+                    <input type="text" class="form-control" name="Trailer" require>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col">
                     <label for="Thumb">Thumbnail Poster Link</label>
-                    <input type="text" class="form-control" name="thumb" require>
+                    <input type="text" class="form-control" name="Thumb" require>
                 </div>
                 <div class="form-group col">
-                    <label for="w_poster">Wide Poster Link</label>
-                    <input type="text" class="form-control" name="w_poster" require>
+                    <label for="W-Poster">Wide Poster Link</label>
+                    <input type="text" class="form-control" name="W-Poster" require>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="synopsis" class="form-label">Synopsis</label>
-                <textarea class="form-control" name="synopsis" rows="3"></textarea>
+                <label for="Synopsis" class="form-label">Synopsis</label>
+                <textarea class="form-control" id="Synopsis" rows="3"></textarea>
             </div>
-            <button type="submit" name="submit" class="btn btn-orange">Create</button>
+            <button type="submit" name="submit" class="btn btn-orange">Edit</button>
         </form>             
     </main>
     <footer></footer>
