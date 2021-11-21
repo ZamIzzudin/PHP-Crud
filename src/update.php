@@ -63,7 +63,7 @@
         <?php foreach ($get_films as $film) { ?>
         <form class="row g-3" action="" method="POST">
             <?php if(isset($update_film) && $update_film === true) { ?>
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success col-12" role="alert">
                 Successfully Edit A Movie
                 </div>
             <?php } ?>
@@ -124,7 +124,9 @@
         </form>
         <?php }?>
     </main>
-    <footer></footer>
+    <footer>
+        <span class="text text-orange footer-text d-block mx-auto">Programing Class 2021</span>
+    </footer>
     <script>
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );

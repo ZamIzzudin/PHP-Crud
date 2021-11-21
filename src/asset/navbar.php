@@ -12,16 +12,10 @@
             <li class="nav-item mr-3">
                 <a class="nav-link" href="#">Category</a>
             </li>
-            <li class="nav-item mr-3">
-                <a class="nav-link" href="#">Actor</a>
-            </li>
-            <li class="nav-item mr-3">
-                <a class="nav-link" href="#">News</a>
-            </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-orange my-2 my-sm-0 mx-4" onclick="return alert('Cuman Hiasan Boss')" type="submit">Sign In</button>
-            <button class="btn btn-orange my-2 my-sm-0" onclick="return alert('Cuman Hiasan Boss')" type="submit">Log In</button>
+            <a class="btn btn-outline-orange my-2 my-sm-0 mx-4" onclick="return alert('Cuman Hiasan Boss')" >Sign In</a>
+            <a class="btn btn-orange my-2 my-sm-0" onclick="return alert('Cuman Hiasan Boss')" >Log In</a>
             </form>
         </div>
         </div>

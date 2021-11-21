@@ -123,7 +123,9 @@
             </div>
         </form>
     </main>
-    <footer></footer>
+    <footer>
+        <span class="text text-orange footer-text d-block mx-auto">Programing Class 2021</span>
+    </footer>
     <script>
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
