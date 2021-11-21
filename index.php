@@ -2,12 +2,16 @@
 <html lang="en">
   <head>
     <?php 
-        include "./src/header.php";
+        include "./src/asset/header.php";
         require "./config/config_db.php";
 
-        $query = "SELECT * FROM film";
-        $get = mysqli_query($conn, $query);
-        $i = 0;
+        $query = "SELECT * FROM film, poster WHERE film.id = poster.id_film";
+        $get_films = mysqli_query($conn, $query);
+
+        $get_latest_id = NULL;
+        foreach ($get_films as $key => $film) {
+            $get_latest_id = $film["id"];
+        }
     ?>
     <title>NETFLOX</title>
   </head>
@@ -20,58 +24,80 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-            <li class="nav-item active mr-3">
-                <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+            <li class="nav-item mr-3">
+                <a class="nav-link" href="#">Home</a>
             </li>
             <li class="nav-item mr-3">
                 <a class="nav-link" href="#">Category</a>
             </li>
             <li class="nav-item mr-3">
-                <a class="nav-link" href="#">Schedule</a>
+                <a class="nav-link" href="#">Actor</a>
             </li>
             <li class="nav-item mr-3">
                 <a class="nav-link" href="#">News</a>
             </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-orange my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+            <button class="btn btn-outline-orange my-2 my-sm-0 mx-4" onclick="return alert('Cuman Hiasan Boss')" type="submit">Sign In</button>
+            <button class="btn btn-orange my-2 my-sm-0" onclick="return alert('Cuman Hiasan Boss')" type="submit">Log In</button>
             </form>
         </div>
         </div>
     </nav>    
     <header>
         <div class="jumbotron jumbotron-fluid position-relative mx-auto">
-            <img src="./src/pict/eternal_big.jpg" class="img-fluid" alt="...">
-            <div class="container eternal-logo">
-              <img src="./src/pict/eternal_logo.png" class="img-fluid" alt="...">  
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="./src/pict/eternals.jpg" class="d-block w-100" alt="Eternals Poster">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="./src/pict/ghostbuster.jpg" class="d-block w-100" alt="Ghost Buster Poster">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="./src/pict/rednotice.jpg" class="d-block w-100" alt="Red Notice Poster">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </button>
             </div>
         </div>
     </header>
     <main class="container mt-5 pt-5">
         <h3 class="text-center text-orange">Watch Now</h3>
-        <a href="./src/create.php" class="btn btn-orange d-block mx-auto mt-5 col-md-3 col-lg-2 col-sm-4 col-5">Add New Movie +</a>
-        <?php foreach ($get as $key => $film) { ?>
-            <?php if($i === 0) {?>
+        <a href="./src/create.php?id=<?= $get_latest_id+1?>" class="btn btn-orange d-block mx-auto mt-5 col-md-3 col-lg-2 col-sm-4 col-5">Add New Movie +</i></a>
+        <?php foreach ($get_films as $key => $film) { ?>
+            <?php if($key === 0) {?>
                 <div class="row mt-5">
                     <div class="card bg-dark text-light mx-auto" style="width: 18rem;">
                         <img src=<?= $film['thumbnail']?> class="card-img-top" alt="...">
                         <div class="card-body">
                         <h5 class="card-title overflow-hidden"><?= $film['title']?></h5>
                         <p class="card-text"><?= $film['year']?></p>
-                            <a href="./src/movie-details.php" class="btn btn-orange">See Details</a>
+                            <a href="./src/movie-details.php?id=<?=$film['id']?>" class="btn btn-orange">See Details</a>
                         </div>
                     </div>
-            <?php $i++; } elseif($i % 3 != 0) {?>
+            <?php  } elseif($key % 3 != 0) {?>
                     <div class="card bg-dark text-light mx-auto" style="width: 18rem;">
                         <img src=<?= $film['thumbnail']?> class="card-img-top" alt="...">
                         <div class="card-body">
                         <h5 class="card-title overflow-hidden"><?= $film['title']?></h5>
                         <p class="card-text"><?= $film['year']?></p>
-                            <a href="./src/movie-details.php" class="btn btn-orange">See Details</a>
+                            <a href="./src/movie-details.php?id=<?=$film['id']?>" class="btn btn-orange">See Details</a>
                         </div>
                     </div>
-            <?php $i++; } elseif($i % 3 === 0) {?>
+            <?php  } elseif($key % 3 === 0) {?>
                 </div>
                 <div class="row mt-5">
                     <div class="card bg-dark text-light mx-auto" style="width: 18rem;">
@@ -79,10 +105,10 @@
                         <div class="card-body">
                         <h5 class="card-title overflow-hidden"><?= $film['title']?></h5>
                         <p class="card-text"><?= $film['year']?></p>
-                            <a href="./src/movie-details.php" class="btn btn-orange">See Details</a>
+                            <a href="./src/movie-details.php?id=<?=$film['id']?>" class="btn btn-orange">See Details</a>
                         </div>
                     </div>
-            <?php $i++; } ?>
+            <?php  } ?>
         <?php } ?>
                 </div>
     </main>

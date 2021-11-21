@@ -1,66 +1,59 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <?php include "./header.php"?>
+    <?php 
+        include "./asset/header.php";
+        require "../config/config_db.php";
+
+        $id = $_GET['id'];
+
+        $query = "SELECT * FROM film, poster WHERE film.id = poster.id_film && film.id =".$id;
+        $get_films = mysqli_query($conn, $query);
+
+        $query = "SELECT genre.genre FROM film_genre, genre WHERE genre.id = film_genre.id_genre && film_genre.id_film =".$id;
+        $get_genres = mysqli_query($conn, $query);
+    
+    ?>
+
     <title>Movie Details</title>
   </head>
   <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-        <a class="navbar-brand mr-5" href="#">NETFLOX</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            <li class="nav-item mr-3">
-                <a class="nav-link" href="../index.php">Home<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item mr-3">
-                <a class="nav-link" href="#">Category</a>
-            </li>
-            <li class="nav-item mr-3">
-                <a class="nav-link" href="#">Schedule</a>
-            </li>
-            <li class="nav-item mr-3">
-                <a class="nav-link" href="#">News</a>
-            </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-orange my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
-            </form>
-        </div>
-        </div>
-    </nav>
+    
+    <?php
+    include "./asset/navbar.php";
+    foreach($get_films as $film) { ?>
     <header>
-        <div class="jumbotron jumbotron-fluid position-relative mx-auto pb-0">
-            <img src="./pict/venom_big.jpg" class="img-fluid big-poster" alt="...">
+        <a class="button btn-orange back-btn text-dark py-1 mt-1" href="../index.php"><i class="bi bi-arrow-left"></i></a>
+        <div class="jumbotron jumbotron-fluid position-relative mx-auto pb-0 text-light">
+            <img src=<?= $film['w_poster']?> class="img-fluid big-poster" alt="...">
         </div>
     </header>
     <main class="container px-5">
         <div class="row position-relative main-title">
-            <img src="./pict/venom_poster.jpg" style="width: 18rem;" class="img-thumbnail" alt="...">
+            <img src=<?= $film['thumbnail']?> style="width: 18rem;" class="img-thumbnail" alt="...">
             <div class="col ml-4 pt-3 ">
-                <h1 class="text text-orange mt-2">Venom : Let There be Carnage</h1>
-                <h3 class="text text-orange mb-5">2021</h3>
-                <p class="text-light">Director : Andy Serkis</p>
-                <p class="text-light">Genre : Action, Adventure, Sci-F</p>
-                <p class="text-light">Actor : Tom Hardy, Woody Harrelson, Michelle Williams, Naomie Harris, Reid Scott, Stephen Graham</p>
+                <h1 class="text text-orange mt-4"><?= $film['title']?></h1>
+                <h3 class="text text-orange mb-5"><?= $film['year']?></h3>
+                <p class="text-light">Director : <?= $film['director']?></p>
+                <p class="text-light">Genre : <?php foreach ($get_genres as $genre) { echo $genre['genre']." ";}?></p>
+                <p class="text-light">Actor : <?= $film['actor']?></p>
                 <div class="row pl-3">
                     <a class="btn btn-orange mt-2 pb-2" href=""><i class="bi bi-play-fill"></i> Watch Now</a>
-                    <a class="btn btn-orange mt-2 pb-2 mx-3" href="./update.php"><i class="bi bi-pencil-fill"></i></i> Edit</a>
-                    <a class="btn btn-outline-orange mt-2 pb-2" href="./delete.php"><i class="bi bi-trash-fill"></i> Delete</a>
+                    <a class="btn btn-orange mt-2 pb-2 mx-3" href="./update.php?id=<?= $id?>"><i class="bi bi-pencil-fill"></i></i> Edit</a>
+                    <a class="btn btn-outline-orange mt-2 pb-2" href="./delete.php?id=<?= $id?>" rola="button" onclick="return confirm('Are you sure you want to delete this user?');"><i class="bi bi-trash-fill"></i> Delete</a>
                 </div>
             </div>
         </div>
         <div class="row px-5">
             <h3 class="text text-orange mt-5">Synopsis</h3>
-            <p class="text-light text-justify">Tom Hardy returns to the big screen as the lethal protector Venom, one of MARVEL’s greatest and most complex characters. Directed by Andy Serkis, written by Kelly Marcel with the story by Tom Hardy & Marcel, the film also stars Michelle Williams, Naomie Harris and Woody Harrelson, in the role of the villain Cletus Kasady/Carnage. <br><br> Eddie Brock attempts to reignite his career by interviewing serial killer Cletus Kasady, who becomes the host of the symbiote Carnage and escapes prison after a failed execution.</p>
+            <div class="col-12 px-4">
+               <p class="text-light text-justify"><?= $film['synopsis']?></p> 
+            </div>
         </div>
         <div class="row">
-            <iframe width="560" class="mx-auto my-5" height="315" src="https://www.youtube.com/embed/-FmWuCgJmxo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" class="mx-auto my-5" height="315" src=<?= $film['trailer_link']?> title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+        <?php } ?>
     </main>
     <footer></footer>
 
