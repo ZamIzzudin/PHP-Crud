@@ -4,13 +4,18 @@
     <?php 
         include "./asset/header.php";
         require "../config/config_db.php";
+
+        // make the error message not display on the page
         ini_set('display_errors', '0');
 
+        // get genre data from database to use on form
         $get_genre = "SELECT genre FROM genre";
         $result_genre = mysqli_query($conn,$get_genre);
 
+        // get id sent from index page
         $id = $_GET['id'];
 
+        // get data form from POST method
         if(isset($_POST['submit'])){
             // Declare variable
             $id = $_POST['id'];
@@ -22,6 +27,7 @@
             $trailer = $_POST['trailer'];
             $synopsis = $_POST['synopsis'];
             $thumbnail = $_POST['thumbnail'];
+            // provide default value when the user doesn't fill in
                 if($thumbnail === ""){
                     $thumbnail = "https://res.cloudinary.com/dqqtuqump/image/upload/w_auto,q_auto,f_auto/v1637334674/php-crud/thumbnail_eiscsy.jpg";
                 };
@@ -30,7 +36,9 @@
                         $wPoster = "https://res.cloudinary.com/dqqtuqump/image/upload/w_auto,q_auto,f_auto/v1637397382/php-crud/wide_ey9k8r.jpg";
                     };
             
+            // because the genre will have more than one data then it is made into an array
             $genres = [];
+                // push data to array genre
                 foreach($_POST['genre'] as $item){ 
                     array_push($genres,$item);
                 }
@@ -57,16 +65,21 @@
     <title>Create</title>
   </head>
   <body>
+
     <?php include "./asset/navbar.php"; ?>
+
     <main class="container body-crud px-5 text-light py-5">   
         <a class="button btn-orange back-btn text-dark py-1" href="../index.php"><i class="bi bi-arrow-left"></i></a>   
         <h1 class="text-orange mb-5">Add New Movie</h1>
+
         <form class="row g-3" action="" method="POST">
+            <!-- When the form is successfully submitted it will give a success message  -->
             <?php if(isset($send_film) && $send_film === true) { ?>
                 <div class="alert alert-success col-12  " role="alert">
                 Successfully Added New Movie
                 </div>
             <?php } ?>
+
             <div class="form-group col-md-4">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control" name="title" placeholder="Insert Title" required>
@@ -123,10 +136,13 @@
             </div>
         </form>
     </main>
+
     <footer>
         <span class="text text-orange footer-text d-block mx-auto">Programing Class 2021</span>
     </footer>
+    
     <script>
+        // so that when the page is refreshed, the data will not be re-sent
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
             }

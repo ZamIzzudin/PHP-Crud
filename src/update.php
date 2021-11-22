@@ -4,16 +4,22 @@
     <?php 
         include "./asset/header.php";
         require "../config/config_db.php";
+
+        // make the error message not display on the page
         ini_set('display_errors', '0');
 
+        // get genre data from database to use on form
         $get_genre = "SELECT genre FROM genre";
         $result_genre = mysqli_query($conn,$get_genre);
         
+        // get id sent from movie-details page
         $id = $_GET['id'];
 
+        // get data film from database with special conditions according to the id sent
         $query = "SELECT * FROM film, poster WHERE film.id = poster.id_film && film.id =".$id;
         $get_films = mysqli_query($conn, $query);
 
+        // get data form from POST method
         if(isset($_POST['submit'])){
             // Declare variable
             $id = $_POST['id'];
@@ -29,7 +35,7 @@
             $genres = $_POST['genre'];
             
                 
-             // Insert into table film
+             // update table film with condition when the user does not fill in the synopsis
             if($synopsis != ""){
                 $query = "UPDATE film SET title='$title' ,year='$year' ,director='$director' ,actor='$actor',synopsis='$synopsis',id_category='$category' WHERE id=$id";
             }else{
@@ -37,15 +43,16 @@
             }
             $update_film = mysqli_query($conn, $query);
 
-            //insert into table poster
+            //update table poster
             if(isset($update_film) && $update_film === true){
                 $query = "UPDATE poster SET trailer_link='$trailer',thumbnail='$thumbnail',w_poster='$wPoster' WHERE id_film='$id'";
                 $update_poster = mysqli_query($conn, $query); 
                 }
                 if(isset($genres)){
-                    // Insert into table film_genre
+                    // to update table film_genre, delete existing data first
                     $query = "DELETE FROM film_genre WHERE id_film=$id";
                     $update_genre = mysqli_multi_query($conn, $query);
+                        // after that we insert the new datato table film_genre
                          foreach ($genres as $genre) {
                             $query = "INSERT INTO film_genre(id_genre, id_film) VALUES ($genre,$id);";
                             $send_genre = mysqli_multi_query($conn, $query);
@@ -56,17 +63,25 @@
     <title>Update</title>
   </head>
   <body>
+
     <?php include "./asset/navbar.php"; ?>
+    
     <a class="button btn-orange back-btn text-dark py-1" href="./movie-details.php?id=<?= $id?>"><i class="bi bi-arrow-left"></i></a>
+    
     <main class="container body-crud px-5 text-light py-5">
         <h1 class="text-orange mb-5">Update a Movie</h1>
         <?php foreach ($get_films as $film) { ?>
+        
+        <!-- The form has been filled from some data obtained from the database, so the user only changes the desired data -->
         <form class="row g-3" action="" method="POST">
+            
+        <!-- When the form is successfully submitted it will give a success message  -->
             <?php if(isset($update_film) && $update_film === true) { ?>
                 <div class="alert alert-success col-12" role="alert">
                 Successfully Edit A Movie
                 </div>
             <?php } ?>
+
             <div class="form-group col-md-4">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" value="<?=$film['title']?>" class="form-control" name="title" placeholder="Insert Title" required>
@@ -124,10 +139,13 @@
         </form>
         <?php }?>
     </main>
+
     <footer>
         <span class="text text-orange footer-text d-block mx-auto">Programing Class 2021</span>
     </footer>
+
     <script>
+        // so that when the page is refreshed, the data will not be re-sent
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
             }

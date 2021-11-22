@@ -8,3 +8,5 @@
     <link rel="stylesheet" href="./src/asset/display.css">
     <link rel="stylesheet" href="./asset/display.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
+    <link rel="icon" href="./pict/iconweb.png" type="image/icon type">
+    <link rel="icon" href="./src/pict/iconweb.png" type="image/icon type">

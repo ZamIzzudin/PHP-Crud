@@ -4,10 +4,15 @@
     <?php 
         include "./src/asset/header.php";
         require "./config/config_db.php";
+        
+        // make the error message not display on the page
+        ini_set('display_errors', '0');
 
+        // get data film from database
         $query = "SELECT * FROM film, poster WHERE film.id = poster.id_film";
         $get_films = mysqli_query($conn, $query);
 
+        // get latest id film for new film to be added
         $get_latest_id = NULL;
         foreach ($get_films as $key => $film) {
             $get_latest_id = $film["id"];
@@ -16,6 +21,7 @@
     <title>NETFLOX</title>
   </head>
   <body>
+
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
         <a class="navbar-brand mr-5" href="#">NETFLOX</a>
@@ -38,6 +44,7 @@
         </div>
         </div>
     </nav>    
+
     <header>
         <div class="jumbotron jumbotron-fluid position-relative mx-auto">
             <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
@@ -68,9 +75,14 @@
             </div>
         </div>
     </header>
+
     <main class="container mt-5 pt-5">
         <h3 class="text-center text-orange">Watch Now</h3>
+        <!-- Send latest id to create page -->
         <a href="./src/create.php?id=<?= $get_latest_id+1?>" class="btn btn-orange d-block mx-auto mt-5 col-md-3 col-lg-2 col-sm-4 col-5">Add New Movie +</i></a>
+        
+        <!-- Render the card containing the acquired film data, 
+        with a condition where there are only 3 cards in one row-->
         <?php foreach ($get_films as $key => $film) { ?>
             <?php if($key === 0) {?>
                 <div class="row mt-5">
@@ -106,10 +118,11 @@
         <?php } ?>
                 </div>
     </main>
+
     <footer>
         <span class="text text-orange footer-text d-block mx-auto">Programing Class 2021</span>
     </footer>
-    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
   </body>

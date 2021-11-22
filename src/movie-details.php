@@ -5,11 +5,17 @@
         include "./asset/header.php";
         require "../config/config_db.php";
 
+        // make the error message not display on the page
+        ini_set('display_errors', '0');
+
+        // get id sent from index page
         $id = $_GET['id'];
 
+        // get data film from database with special conditions according to the id sent
         $query = "SELECT * FROM film, poster WHERE film.id = poster.id_film && film.id =".$id;
         $get_films = mysqli_query($conn, $query);
 
+        // get data genre from database with special conditions according to the id sent
         $query = "SELECT genre.genre FROM film_genre, genre WHERE genre.id = film_genre.id_genre && film_genre.id_film =".$id;
         $get_genres = mysqli_query($conn, $query);
     
@@ -22,12 +28,15 @@
     <?php
     include "./asset/navbar.php";
     foreach($get_films as $film) { ?>
+
     <header>
         <a class="button btn-orange back-btn py-1 mt-1" href="../index.php"><i class="bi bi-arrow-left"></i></a>
         <div class="jumbotron jumbotron-fluid position-relative mx-auto pb-0 text-light">
             <img src=<?= $film['w_poster']?> class="img-fluid big-poster" alt="...">
         </div>
     </header>
+
+    <!-- Render the page containing the acquired film data -->
     <main class="container px-5">
         <div class="row position-relative main-title">
             <img src=<?= $film['thumbnail']?> style="width: 18rem;" class="img-thumbnail" alt="...">
@@ -39,7 +48,9 @@
                 <p class="text-light">Actor : <?= $film['actor']?></p>
                 <div class="row pl-3">
                     <a class="btn btn-orange mt-2 pb-2" href=""><i class="bi bi-play-fill"></i> Watch Now</a>
+                    <!-- edit button -->
                     <a class="btn btn-orange mt-2 pb-2 mx-3" href="./update.php?id=<?= $id?>"><i class="bi bi-pencil-fill"></i></i> Edit</a>
+                    <!-- delete button -->
                     <a class="btn btn-outline-orange mt-2 pb-2" href="./delete.php?id=<?= $id?>" rola="button" onclick="return confirm('Are you sure you want to delete this user?');"><i class="bi bi-trash-fill"></i> Delete</a>
                 </div>
             </div>
@@ -55,6 +66,7 @@
         </div>
         <?php } ?>
     </main>
+
     <footer>
         <span class="text text-orange footer-text d-block mx-auto">Programing Class 2021</span>
     </footer>
