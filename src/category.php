@@ -22,6 +22,7 @@
     <?php include "./asset/navbar.php" ?>
     <header></header>
     <main class="container mt-5 pt-5">
+      <a class="button btn-orange back-btn py-1 mt-1" href="../index.php"><i class="bi bi-arrow-left"></i></a>
         <h1 class="text-light">Genre</h1>
         <?php 
         foreach ($genres as $key => $genre) { ?>

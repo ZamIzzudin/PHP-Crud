@@ -40,7 +40,7 @@
     </nav>    
     <header>
         <div class="jumbotron jumbotron-fluid position-relative mx-auto">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -48,13 +48,13 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <img src="./src/pict/eternals.jpg" class="d-block w-100" alt="Eternals Poster">
+                        <img src="./src/pict/eternals.jpg" class="d-block w-100" alt="Eternals Poster">
                     </div>
                     <div class="carousel-item">
-                    <img src="./src/pict/ghostbuster.jpg" class="d-block w-100" alt="Ghost Buster Poster">
+                        <img src="./src/pict/ghostbuster.jpg" class="d-block w-100" alt="Ghost Buster Poster">
                     </div>
                     <div class="carousel-item">
-                    <img src="./src/pict/rednotice.jpg" class="d-block w-100" alt="Red Notice Poster">
+                        <img src="./src/pict/rednotice.jpg" class="d-block w-100" alt="Red Notice Poster">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">

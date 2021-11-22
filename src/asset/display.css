@@ -31,11 +31,26 @@ a{
 
 .btn-orange{
     background-color: var(--secondary);
+    border: 2px solid var(--secondary);
+    transition: .2s;
 }
 
 .btn-outline-orange{
     border: 2px solid var(--secondary);
     color: var(--secondary);
+    transition: .2s;
+}
+
+.btn-orange:hover{
+    background-color: transparent;
+    color: var(--secondary);
+    transform: scale(1.1);
+}
+
+.btn-outline-orange:hover{
+    background-color: var(--secondary);
+    color: var(--primary);
+    transform: scale(1.1);
 }
 
 .eternal-logo{
@@ -94,4 +109,14 @@ footer{
     padding-left: .8%;
     padding-right: .8%;
     z-index: 10;
+    transition: .3s;
+    border: 3px solid var(--secondary);
+    color: var(--primary);
+}
+
+.back-btn:hover{
+    background-color: transparent;
+    border: 3px solid var(--secondary);
+    color: var(--secondary) !important;
+    transform: scale(1.1);
 }

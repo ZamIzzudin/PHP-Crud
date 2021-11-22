@@ -23,7 +23,7 @@
     include "./asset/navbar.php";
     foreach($get_films as $film) { ?>
     <header>
-        <a class="button btn-orange back-btn text-dark py-1 mt-1" href="../index.php"><i class="bi bi-arrow-left"></i></a>
+        <a class="button btn-orange back-btn py-1 mt-1" href="../index.php"><i class="bi bi-arrow-left"></i></a>
         <div class="jumbotron jumbotron-fluid position-relative mx-auto pb-0 text-light">
             <img src=<?= $film['w_poster']?> class="img-fluid big-poster" alt="...">
         </div>
