@@ -50,7 +50,7 @@
                         <div class="card-body">
                         <h5 class="card-title overflow-hidden"><?= $film['title']?></h5>
                         <p class="card-text"><?= $film['year']?></p>
-                            <a href="./src/movie-details.php?id=<?=$film['id']?>" class="btn btn-orange">See Details</a>
+                            <a href="./movie-details.php?id=<?=$film['id_film']?>" class="btn btn-orange">See Details</a>
                         </div>
                     </div>
             <?php  } elseif($key % 3 != 0) {?>
@@ -59,7 +59,7 @@
                         <div class="card-body">
                         <h5 class="card-title overflow-hidden"><?= $film['title']?></h5>
                         <p class="card-text"><?= $film['year']?></p>
-                            <a href="./src/movie-details.php?id=<?=$film['id']?>" class="btn btn-orange">See Details</a>
+                            <a href="./movie-details.php?id=<?=$film['id_film']?>" class="btn btn-orange">See Details</a>
                         </div>
                     </div>
             <?php  } elseif($key % 3 === 0) {?>
@@ -70,7 +70,7 @@
                         <div class="card-body">
                         <h5 class="card-title overflow-hidden"><?= $film['title']?></h5>
                         <p class="card-text"><?= $film['year']?></p>
-                            <a href="./src/movie-details.php?id=<?=$film['id']?>" class="btn btn-orange">See Details</a>
+                            <a href="./movie-details.php?id=<?=$film['id_film']?>" class="btn btn-orange">See Details</a>
                         </div>
                     </div>
             <?php  } ?>
