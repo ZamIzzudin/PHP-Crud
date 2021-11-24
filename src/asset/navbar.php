@@ -10,7 +10,7 @@
                 <a class="nav-link" href="../index.php">Home</a>
             </li>
             <li class="nav-item mr-3">
-                <a class="nav-link" href="#">Category</a>
+                <a class="nav-link" href="./category.php">Category</a>
             </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
